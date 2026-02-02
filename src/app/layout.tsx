@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: content.pages.home.metaTitle,
-  description: content.pages.home.subHeadline,
+  description: content.pages.home.subtitle,
 };
 
 export default function RootLayout({
