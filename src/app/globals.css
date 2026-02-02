@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-plus-jakarta), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --accent: #2563eb;
+  /* Blue-600 */
+  --slate-100: #f1f5f9;
+  --slate-600: #475569;
+  --slate-900: #0f172a;
+}
+
+body,
+html {
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  font-size: 16px;
+  line-height: normal;
+  /* Reset */
+}
+
+/* Typography Overrides */
+h1 {
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+p {
+  color: var(--slate-600);
+  font-size: 1.125rem;
+  /* text-lg */
+  line-height: 1.625;
+  /* leading-relaxed */
+  margin-bottom: 1.5rem;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1400px !important;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Boutique Card */
+.boutique-card {
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  /* slate-100 */
+  padding: 2.5rem;
+  /* p-10 */
+  transition: all 0.3s ease;
+}
+
+.boutique-card:hover {
+  border-color: #3b82f6;
+  /* blue-500 */
+  box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.15);
+}
+
+/* Buttons: Sharp corners */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 2px;
+  /* rounded-[2px] */
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  padding: 0.75rem 2rem;
+  border-radius: 2px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #f8fafc;
+}
+
+/* Tech Label Grid */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+  border-left: 2px solid #2563eb;
+  padding-left: 1.5rem;
+}
+
+.tech-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #64748b;
+  /* slate-500 */
+  text-transform: uppercase;
+}

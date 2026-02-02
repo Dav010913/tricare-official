@@ -1,0 +1,89 @@
+{
+  "siteConfig": {
+    "companyName": "Tricare",
+    "domain": "tricareglobal.com.au",
+    "contactEmail": "info@tricareglobal.com.au",
+    "abn": "50 605 155 413",
+    "copyrightYear": "2026",
+    "estYear": "2015"
+  },
+  "pages": {
+    "home": {
+      "metaTitle": "Tricare | Ingredient Sourcing for Global Health Manufacturing",
+      "title": "Trusted ingredient sourcing for global health manufacturing.",
+      "subtitle": "We connect global suppliers with production teams — focusing on production-ready sourcing and technical fit.",
+      "quickFacts": [
+        {
+          "title": "Documentation-driven sourcing",
+          "text": "Every ingredient is vetted against strict documentation standards before it reaches your facility."
+        },
+        {
+          "title": "Production-aware evaluation",
+          "text": "We assess physical properties to ensure seamless integration into your manufacturing lines."
+        },
+        {
+          "title": "Regulatory alignment",
+          "text": "Full compliance verification across global markets including TGA, FDA, and FSanz standards."
+        }
+      ],
+      "mission": {
+        "description": "Tricare sources ingredients for health and nutrition manufacturing. We focus on how materials perform in production — not just on paper specifications."
+      }
+    },
+    "categories": {
+      "intro": "We focus on ingredients used across modern nutrition and health manufacturing — where quality, consistency, and production fit matter.",
+      "items": [
+        {
+          "title": "Whey Protein (WPI / WPC)",
+          "desc": "High-clarity dairy protein for powders and ready-to-drink systems. Key: protein content, solubility, batch consistency."
+        },
+        {
+          "title": "Lactoferrin",
+          "desc": "Purified, food-grade lactoferrin with clear batch documentation."
+        },
+        {
+          "title": "Sports Nutrition & Beverages",
+          "desc": "Electrolytes and carbohydrate systems designed for instant solubility."
+        },
+        {
+          "title": "Amino Acids",
+          "desc": "USP / EP grade amino acids for nutrition manufacturing — consistency required."
+        },
+        {
+          "title": "Botanical Extracts",
+          "desc": "Standardised extracts with defined active markers and documented processes."
+        }
+      ]
+    },
+    "compliance": {
+      "header": "Documentation is the starting point for every evaluation.",
+      "points": [
+        {
+          "label": "Batch Documentation Review",
+          "text": "We review COA and SDS to confirm alignment with technical expectations."
+        },
+        {
+          "label": "Regulatory Alignment",
+          "text": "We understand regulatory and GMP-related considerations relevant to health manufacturing."
+        },
+        {
+          "label": "Data Handling",
+          "text": "Supplier technical information is handled via secure email. NDAs available on request."
+        }
+      ]
+    },
+    "insight": {
+      "header": "Ingredients are evaluated by their performance in production.",
+      "steps": [
+        "Specification review — Assess particle size, moisture, solubility.",
+        "Production considerations — Evaluate behavior in blending and stability.",
+        "Fit-for-purpose sourcing — Recommend formats to reduce formulation risk."
+      ]
+    },
+    "contact": {
+      "header": "Interested in supplying ingredients?",
+      "email": "info@tricareglobal.com.au",
+      "note": "No file uploads on the site — please email COA/SDS to the address above."
+    }
+  }
+}
