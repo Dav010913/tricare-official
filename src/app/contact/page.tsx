@@ -18,16 +18,21 @@ export default function Contact() {
 
         const form = e.currentTarget;
         const formData = new FormData(form);
-        
+        const data = Object.fromEntries(formData.entries());
+
         try {
-            await fetch("/", {
+            const response = await fetch("/api/contact", {
                 method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                // @ts-ignore
-                body: new URLSearchParams(formData).toString(),
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
             });
-            setStatus('success');
-            form.reset(); // 提交成功后清空表单
+
+            if (response.ok) {
+                setStatus('success');
+                form.reset();
+            } else {
+                throw new Error('Failed to send message');
+            }
         } catch (error) {
             console.error("Submission error:", error);
             setStatus('error');
@@ -85,7 +90,7 @@ export default function Contact() {
                                     <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
                                     <h3 className="text-2xl font-bold text-slate-900 mb-2">Message Sent!</h3>
                                     <p className="text-slate-600 mb-6">Thank you for reaching out. We will get back to you shortly.</p>
-                                    <button 
+                                    <button
                                         onClick={() => setStatus('idle')}
                                         className="text-blue-600 font-bold hover:underline"
                                     >
@@ -97,11 +102,8 @@ export default function Contact() {
                                     name="contact"
                                     onSubmit={handleSubmit}
                                     className="space-y-6"
-                                    data-netlify="true"
                                 >
-                                    {/* 关键：Netlify 识别表单所需的隐藏字段 */}
-                                    <input type="hidden" name="form-name" value="contact" />
-                                    
+
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
                                             <label className="block text-sm font-bold text-slate-700 uppercase tracking-wide mb-2">Name</label>
@@ -128,8 +130,8 @@ export default function Contact() {
                                     )}
 
                                     <div className="pt-4">
-                                        <button 
-                                            type="submit" 
+                                        <button
+                                            type="submit"
                                             disabled={status === 'sending'}
                                             className="btn-primary w-full md:w-auto text-lg px-10 py-4 rounded-sm shadow-lg shadow-blue-500/20 disabled:opacity-70 flex items-center justify-center gap-2"
                                         >
