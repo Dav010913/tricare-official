@@ -1,178 +1,116 @@
 "use client";
 
-import { useState } from 'react';
-import { Mail, Info, Globe, Send, Loader2, CheckCircle2 } from 'lucide-react';
-import { TechIcon } from '@/components/TechIcon';
+import { Info, Globe, Upload } from 'lucide-react';
 import content from '@/data/content.json';
 
 export default function Contact() {
     const { contact } = content.pages;
     const { contactEmail } = content.siteConfig;
 
-    // 状态管理：idle | sending | success | error
-    const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setStatus('sending');
-
-        const form = e.currentTarget;
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-
-        try {
-            const response = await fetch("/api/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data),
-            });
-
-            if (response.ok) {
-                setStatus('success');
-                form.reset();
-            } else {
-                throw new Error('Failed to send message');
-            }
-        } catch (error) {
-            console.error("Submission error:", error);
-            setStatus('error');
-        }
-    };
-
     return (
-        <div className="flex flex-col gap-0 bg-slate-50">
+        <div className="flex flex-col gap-0 bg-slate-50 min-h-screen">
             {/* Hero Section */}
-            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+            <section className="relative min-h-[45vh] flex items-center justify-center overflow-hidden bg-white">
                 <div className="absolute inset-0 z-0">
                     <img
                         src="/hero-bg.png"
                         alt="Laboratory Background"
-                        className="w-full h-full object-cover opacity-20"
+                        className="w-full h-full object-cover opacity-15 grayscale"
                     />
-                    <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-blue-50/20 to-transparent" />
+                    <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-blue-50/10 to-transparent" />
                 </div>
 
-                <div className="container relative z-10 pt-24 pb-24 md:pt-32 md:pb-40">
+                <div className="container relative z-10 pt-32 pb-20">
                     <div className="max-w-3xl mx-auto text-center">
                         <div className="inline-flex items-center gap-3 mb-8">
                             <div className="h-[1px] w-12 bg-slate-300"></div>
-                            <span className="font-mono text-xs font-bold text-slate-500 tracking-[0.2em] uppercase">
+                            <span className="font-mono text-[10px] font-bold text-slate-400 tracking-[0.3em] uppercase">
                                 04 // COMMUNICATIONS
                             </span>
                             <div className="h-[1px] w-12 bg-slate-300"></div>
                         </div>
 
-                        <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-slate-900 tracking-tighter uppercase mb-8 drop-shadow-sm leading-tight">
-                            Contact
+                        <h1 className="text-4xl md:text-7xl font-black text-[#1A1A1A] tracking-tighter uppercase mb-6 drop-shadow-sm leading-none">
+                            CONTACT
                         </h1>
-
-                        <p className="text-lg md:text-xl text-slate-600 leading-relaxed font-medium">
-                            {contact.header}
-                        </p>
                     </div>
                 </div>
             </section>
 
             {/* Main Content */}
-            <section className="relative z-20 -mt-16 md:-mt-32 pb-24">
+            <section className="relative z-20 -mt-12 md:-mt-24 pb-24">
                 <div className="container">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                        {/* Form Section */}
-                        <div className="lg:col-span-2 p-6 md:p-10 rounded-sm bg-white border border-slate-100 shadow-sm">
-                            <div className="flex items-center gap-4 mb-8 border-b border-slate-100 pb-8">
-                                <TechIcon icon={Send} className="w-10 h-10" />
-                                <h2 className="text-2xl font-bold text-slate-900 m-0">Send Message</h2>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+                        {/* Left Hero Card: LET'S CONNECT DIGITALLY */}
+                        <div className="lg:col-span-8 relative overflow-hidden rounded-sm bg-[#F8FAFC] border border-slate-100 shadow-sm flex flex-col justify-center p-8 md:p-16 min-h-[400px]">
+                            {/* Geometric/Molecular Background Pattern */}
+                            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
+                                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1" />
+                                        </pattern>
+                                        <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+                                            <circle cx="2" cy="2" r="1" fill="currentColor" />
+                                        </pattern>
+                                    </defs>
+                                    <rect width="100%" height="100%" fill="url(#grid)" />
+                                    <rect width="100%" height="100%" fill="url(#dots)" />
+                                    {/* Molecular lines */}
+                                    <line x1="10%" y1="20%" x2="30%" y2="40%" stroke="currentColor" strokeWidth="2" />
+                                    <line x1="30%" y1="40%" x2="20%" y2="70%" stroke="currentColor" strokeWidth="2" />
+                                    <circle cx="10%" cy="20%" r="4" fill="currentColor" />
+                                    <circle cx="30%" cy="40%" r="4" fill="currentColor" />
+                                    <circle cx="20%" cy="70%" r="4" fill="currentColor" />
+                                </svg>
                             </div>
 
-                            {status === 'success' ? (
-                                <div className="py-12 text-center animate-in fade-in zoom-in duration-300">
-                                    <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Message Sent!</h3>
-                                    <p className="text-slate-600 mb-6">Thank you for reaching out. We will get back to you shortly.</p>
-                                    <button
-                                        onClick={() => setStatus('idle')}
-                                        className="text-blue-600 font-bold hover:underline"
-                                    >
-                                        Send another message
-                                    </button>
+                            <div className="relative z-10 max-w-xl">
+                                <h2 className="text-4xl md:text-6xl font-black text-[#1A1A1A] tracking-tighter uppercase leading-[0.9] mb-6">
+                                    LET’S CONNECT <br /> DIGITALLY
+                                </h2>
+                                <p className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed mb-10">
+                                    We&apos;re building something new, for a smarter way to connect.
+                                </p>
+                                <div className="inline-flex p-4 rounded-full bg-blue-50 border border-blue-100">
+                                    <Upload className="w-8 h-8 text-[#0052CC]" strokeWidth={1.5} />
                                 </div>
-                            ) : (
-                                <form
-                                    name="contact"
-                                    onSubmit={handleSubmit}
-                                    className="space-y-6"
-                                >
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label className="block text-sm font-bold text-slate-700 uppercase tracking-wide mb-2">Name</label>
-                                            <input type="text" name="name" required placeholder="Full Name" className="w-full h-12 md:h-14 p-3 md:px-4 bg-slate-50 border border-slate-200 rounded-[2px] focus:border-[#2563eb] outline-none transition-colors text-slate-600 placeholder:text-slate-400" />
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-bold text-slate-700 uppercase tracking-wide mb-2">Email</label>
-                                            <input type="email" name="email" required placeholder="email@company.com" className="w-full h-12 md:h-14 p-3 md:px-4 bg-slate-50 border border-slate-200 rounded-[2px] focus:border-[#2563eb] outline-none transition-colors text-slate-600 placeholder:text-slate-400" />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-bold text-slate-700 uppercase tracking-wide mb-2">Company</label>
-                                        <input type="text" name="company" placeholder="Company Name" className="w-full h-12 md:h-14 p-3 md:px-4 bg-slate-50 border border-slate-200 rounded-[2px] focus:border-[#2563eb] outline-none transition-colors text-slate-600 placeholder:text-slate-400" />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-sm font-bold text-slate-700 uppercase tracking-wide mb-2">Message</label>
-                                        <textarea name="message" required rows={5} placeholder="How can we help?" className="w-full p-3 md:p-4 bg-slate-50 border border-slate-200 rounded-[2px] focus:border-[#2563eb] outline-none transition-colors text-slate-600 placeholder:text-slate-400"></textarea>
-                                    </div>
-
-                                    {status === 'error' && (
-                                        <p className="text-red-500 text-sm font-bold">Something went wrong. Please try again or email us directly.</p>
-                                    )}
-
-                                    <div className="pt-4">
-                                        <button
-                                            type="submit"
-                                            disabled={status === 'sending'}
-                                            className="btn-primary w-full md:w-auto text-lg px-10 py-4 rounded-sm shadow-lg shadow-blue-500/20 disabled:opacity-70 flex items-center justify-center gap-2"
-                                        >
-                                            {status === 'sending' ? (
-                                                <>
-                                                    <Loader2 className="w-5 h-5 animate-spin" />
-                                                    Sending...
-                                                </>
-                                            ) : (
-                                                'Submit Inquiry'
-                                            )}
-                                        </button>
-                                    </div>
-                                </form>
-                            )}
+                            </div>
                         </div>
 
-                        {/* Info Cards */}
-                        <div className="flex flex-col gap-6">
-                            <div className="p-6 md:p-10 rounded-sm bg-white/80 backdrop-blur-sm border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                                <span className="text-[10px] font-mono font-bold tracking-widest uppercase block mb-2 text-slate-400">Primary Email</span>
-                                <a href={`mailto:${contactEmail}`} className="text-lg font-bold text-[#2563eb] break-all hover:underline">
+                        {/* Right Info Cards */}
+                        <div className="lg:col-span-4 flex flex-col gap-6">
+                            {/* Email Card */}
+                            <div className="p-8 md:p-10 rounded-sm bg-white border border-slate-100 shadow-sm flex flex-col justify-center">
+                                <span className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase block mb-4 text-slate-400">Primary Email</span>
+                                <a href={`mailto:${contactEmail}`} className="text-xl md:text-2xl font-black text-[#0052CC] break-all hover:underline leading-tight">
                                     {contactEmail}
                                 </a>
                             </div>
 
-                            <div className="p-6 md:p-10 rounded-sm bg-white/80 backdrop-blur-sm border border-slate-100 shadow-sm border-l-4 border-l-amber-400 hover:shadow-md transition-all">
-                                <span className="text-[10px] font-mono font-bold tracking-widest uppercase text-amber-600 block mb-3">Notice</span>
-                                <p className="text-slate-600 text-base m-0 leading-relaxed">
-                                    {contact.note}
+                            {/* Notice Card */}
+                            <div className="p-8 md:p-10 rounded-sm bg-white border border-slate-100 shadow-sm border-l-4 border-l-amber-400 flex flex-col justify-center">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <Info className="w-4 h-4 text-[#0052CC]" />
+                                    <span className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase text-[#0052CC]">Notice</span>
+                                </div>
+                                <p className="text-[#1A1A1A] text-lg font-bold m-0 leading-tight">
+                                    No file uploads on the site — please email COA/SDS to the address above.
                                 </p>
                             </div>
 
-                            <div className="p-6 md:p-10 rounded-sm bg-white/80 backdrop-blur-sm border border-slate-100 shadow-sm hover:shadow-md transition-all">
-                                <Globe className="w-8 h-8 text-[#2563eb] mb-4" />
-                                <h3 className="text-lg font-bold text-slate-900 mb-2">Global Network</h3>
-                                <p className="text-slate-600 text-sm m-0 leading-relaxed">
+                            {/* Global Network Card */}
+                            <div className="p-8 md:p-10 rounded-sm bg-white border border-slate-100 shadow-sm flex flex-col justify-center">
+                                <Globe className="w-10 h-10 text-[#0052CC] mb-6" strokeWidth={1.5} />
+                                <h3 className="text-xl font-black text-[#1A1A1A] uppercase tracking-tighter mb-3">Global Network</h3>
+                                <p className="text-slate-500 text-base font-medium m-0 leading-relaxed">
                                     Connecting suppliers and manufacturers worldwide.
                                 </p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
