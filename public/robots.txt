@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /api
+
+# Host
+Host: https://tricareglobal.com.au
+
+# Sitemaps
+Sitemap: https://tricareglobal.com.au/sitemap.xml
